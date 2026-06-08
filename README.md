@@ -7,11 +7,11 @@ This site is a compendium of resources on expander graphs, in particular includi
 * [Jellyfish: Networking Data Centers Randomly](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla). Ankit Singla, Chi-Yao Hong, Lucian Popa, and P. Brighten Godfrey. 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2012. (An earlier version appeared in HotCloud 2011.)
   * Introduced the idea of using a degree-bounded random graph as the data center network topology, leading to better throughput and greater flexibility in construction compared to Clos networks (fat trees). In particular, the paper showed 25% higher throughput than Clos networks for the workloads it considered, and 60% lower incremental expansion cost for a particular model of incremental expansion, and better resilience to failed components.
   * Compared throughput with degree-diameter optimal (Moore bound) graphs, as a benchmark of an optimal topology, finding Jellyfish comes within 10% of their throughput. (See discussion of Moore graphs elsewhere on this page.)
-  * Proposed routing with k-shortest paths, and simplifying cabling via physical switch placement, patch panels providing the random matchings, and clustering with fewer cross-cluster links and bundling cables
+  * Proposed approaches to deployment challenges: routing with k-shortest paths, and simplifying cabling via physical switch placement, patch panels providing the random matchings, and clustering with fewer cross-cluster links and bundling cables
 
 * [High Throughput Data Center Topology Design](https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/singla). Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. 11th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2014.
   * Shows that the Jellyfish topology is near optimal for throughput, by developing an analytical upper bound for throughput for any graph with a given number of nodes and node degree. In some configurations, with a dense (all-to-all) traffic matrix, Jellyfish matches this bound; in other cases it is 10-30% from the bound, depending on topology parameters and workload.
-  * Studies heterogeneous topology design
+  * Studies heterogeneous topology design, with switches of different degree and different link capacity.
 
 * [Slim Fly: A Cost Effective Low-Diameter Network Topology](https://spcl.inf.ethz.ch/Publications/.pdf/sf_sc_2014.pdf). Maciej Besta and Torsten Hoefler. International Conference on High Performance Computing, Networking, Storage and Analysis, November 2014 (SC 2014).
 
