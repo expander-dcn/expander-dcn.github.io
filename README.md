@@ -1,6 +1,6 @@
 # Expander Data Center Networks
 
-This site is a compendium of resources on random graphs and, more generally, expander graphs, for data center networks.
+This site is a compendium of resources on expander graphs, in particular including random graphs, for data center networks.
 
 # Research Papers
 
@@ -11,6 +11,8 @@ This site is a compendium of resources on random graphs and, more generally, exp
 
 * [High Throughput Data Center Topology Design](https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/singla). Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. 11th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2014.
   * Shows that 
+
+* [Slim Fly: A Cost Effective Low-Diameter Network Topology](https://spcl.inf.ethz.ch/Publications/.pdf/sf_sc_2014.pdf). Maciej Besta and Torsten Hoefler. International Conference on High Performance Computing, Networking, Storage and Analysis, November 2014 (SC 2014).
 
 * [Measuring and Understanding Throughput of Network Topologies](https://pbg.cs.illinois.edu/papers/jyothi16throughput.pdf). Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), November 2016.
 
