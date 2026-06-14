@@ -10,8 +10,10 @@ This site is a compendium of resources on expander graphs, in particular includi
   * Proposed approaches to deployment challenges: routing with k-shortest paths, and simplifying cabling via physical switch placement, patch panels providing the random matchings, and clustering with fewer cross-cluster links and bundling cables
 
 * [High Throughput Data Center Topology Design](https://www.usenix.org/conference/nsdi14/technical-sessions/presentation/singla). Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. 11th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2014.
-  * Shows that the Jellyfish topology is near optimal for throughput, by developing an analytical upper bound for throughput for any graph with a given number of nodes and node degree. In some configurations, with a dense (all-to-all) traffic matrix, Jellyfish closely approaches this bound; in other cases it is up to 30% from the bound, depending on topology parameters and workload.
-  * Studies heterogeneous topology design, with switches of different degree and different link capacity.
+  * How close to optimal are (homogeneous) random graphs? Compared to an analytical upper bound for throughput for any graph with a given number of nodes and node degree, Jellyfish closely approaches this bound with a dense (all-to-all) traffic matrix; in other cases it is up to 30% from the bound. Path length is within a few percent of the lower bound and approaches optimal with increased scale. 
+  * Studies how to configure random graphs with heterogeneous equipment, finding that (a) connecting servers to switches in proportion to degree performs best; (b) to interconnect switches with different degree, a wide range of options have equal performance; (c) to interconnect switches with different link capacity, there is somewhat more complex bottleneck behavior.
+  * Theoretically explains the effect (previously noted in the Jellyfish paper) that connectivity can be reduced between clusters of switches without impacting throughput
+  * Shows that randomizing the VL2 topology, which has heterogeneous line speeds and degrees, improves throughput by 43% (depending on exact topology and workload parameters, this could be more or less).
 
 * [Slim Fly: A Cost Effective Low-Diameter Network Topology](https://spcl.inf.ethz.ch/Publications/.pdf/sf_sc_2014.pdf). Maciej Besta and Torsten Hoefler. International Conference on High Performance Computing, Networking, Storage and Analysis, November 2014 (SC 2014).
 
