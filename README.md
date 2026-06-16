@@ -19,12 +19,12 @@ This site is a compendium of resources on expander graphs, in particular includi
 
 * [Measuring and Understanding Throughput of Network Topologies](https://pbg.cs.illinois.edu/papers/jyothi16throughput.pdf). Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), November 2016.
 
-* [Xpander: Towards Optimal-Performance Datacenters](https://dl.acm.org/doi/10.1145/2999572.2999580). Asaf Valadarsky, Gal Shahaf, Michael Dinitz, and Michael Schapira. ACM CoNEXT 2016. A prior version appeared in HotNets 2015.
+* [Xpander: Towards Optimal-Performance Datacenters](https://dl.acm.org/doi/10.1145/2999572.2999580). Asaf Valadarsky, Gal Shahaf, Michael Dinitz, and Michael Schapira. ACM CoNEXT 2016. ([Prior version](https://dl.acm.org/doi/10.1145/2834050.2834059) in HotNets 2015. [Project page](https://husant.github.io/Xpander/).)
   * Proposes Xpander, a deterministic expander graph construction for a data center network based on 2-lifts which can be incrementally expanded.
   * Shows that several recently proposed data center topologies perform well because they are expanders -- in particular showing Jellyfish, Xpander, and several other expander graph constructions have nearly identical throughput, path length, and failure resilience. Also shows Slim Fly has reasonbly high expansion, though not quite as high as Jellyfish and Xpander.
   * Experiments with a hardware test (the first ever?) of an expander graph on a small testbed, showing better performance than fat trees.
 
-* [Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836). Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017.
+* [Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836). Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017. ([Prior version](https://dl.acm.org/doi/10.1145/3005745.3005747) in HotNets 2016.)
 
 * [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945). Vipul Harsh, Sangeetha Abdu Jyothi, and P. Brighten Godfrey. Nineteenth ACM Workshop on Hot Topics in Networks (HotNets), November 2020.
 
@@ -43,4 +43,10 @@ This site is a compendium of resources on expander graphs, in particular includi
 
 # Talks and Lecture Slides
 
+* [Networking Data Centers Randomly](https://www.youtube.com/watch?v=yEjcZC34qNo). Brighten Godfrey. Talk at Texas A&M University, November 14, 2013.
+
 # Simulators and Data Sets
+
+* [Topobench](https://github.com/ankitsingla/topobench-1): topology comparison tool used in Jellyfish (NSDI'12) and later extended in several papers (NSDI'14, SC'16, HotNets'16). Uses a multicommodity flow analysis -- that is, modeling network flow as a fluid rather than a packet-level simulation.
+* [NetBench](https://github.com/ndal-eth/netbench): packet level simulator from Beyond Fat-Trees (SIGCOMM'17).
+* [Starfish simulator](https://github.com/AnnZhouCcc/Starfish): packet level simulator from Starfish (NSDI'26), which also includes other topologies for comparison.
