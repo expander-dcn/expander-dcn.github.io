@@ -1,8 +1,14 @@
 # Expander Data Center Networks
 
-This site is a compendium of resources on expander graphs, in particular including random graphs, for data center networks.
+This site is a compendium of resources on expander graphs, including random graphs, for data center networks. Traditionally, data center networks use tree-like topologies, particularly Clos networks, including fat trees and leaf-spine networks. But it turns out it's possible to do significantly better, with various types of expander graphs. These topologies provide higher throughput, construction flexibility, and better resilience. A series of recent work, beginning with the Jellyfish project at the University of Illinois Urbana-Champaign, has explored these topologies, their performance, and systems challenges including approaches to routing and physical cabling. In 2026, Amazon Web Services announced deployment of random graphs as the default architecture for new data center build-outs, resulting in 45% lower cost than Clos networks.
+
+Here, we bring together research and resources on expander-based data centers, to provide a relatively complete picture of known techniques, results, and relationships between them. The hope is that these resources can assist future research, as well as teaching and industry adoption. This site is curated by [Brighten Godfrey](https://pbg.cs.illinois.edu/). Comments and contributions are welcome via email or opening an [issue](https://github.com/expander-dcn/expander-dcn.github.io/issues) in the repo.
+
+# Technical Overview
 
 # Key Research Papers
+
+## Systems and System Evaluations
 
 * [Jellyfish: Networking Data Centers Randomly](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla). Ankit Singla, Chi-Yao Hong, Lucian Popa, and P. Brighten Godfrey. 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2012. (An earlier version appeared in HotCloud 2011.)
   * Introduced the idea of using a degree-bounded random graph as the data center network topology, leading to better throughput and greater flexibility in construction compared to Clos networks (fat trees). In particular, the paper showed 25% higher throughput than Clos networks for the workloads it considered, and 60% lower incremental expansion cost for a particular model of incremental expansion, and better resilience to failed components.
