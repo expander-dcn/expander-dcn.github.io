@@ -35,9 +35,10 @@ Here, we bring together research and resources on expander-based data centers, t
 
 * [Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836). Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017. ([Prior version](https://dl.acm.org/doi/10.1145/3005745.3005747) in HotNets 2016.)
 
-* [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945). Vipul Harsh, Sangeetha Abdu Jyothi, and P. Brighten Godfrey. Nineteenth ACM Workshop on Hot Topics in Networks (HotNets), November 2020.
-
-* [Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish). Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026.
+* [Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish). Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers], (https://dl.acm.org/doi/10.1145/3422604.3425945), in HotNets 2020.)
+  * Shows that leaf-spine is suboptimal for throughput, with flat networks including Jellyfish and the new DRing topology achieving >50% higher throughput.  Past work had focused on improving larger 3-tier Clos networks (fat trees), rather than leaf-spine which is used commonly in smaller data centers.
+  * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and performs as well as Jellyfish and sometimes better at small scale. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
+  * Introduces a practical routing scheme for flat networks including Jellyfish and DRing, easily implementable with standard switch features (BGP and VRFs) that performs well when used with ECMP and better with centrally-optimized weights.
 
 * [RNG: Flat Datacenter Networks at Scale](https://arxiv.org/abs/2604.15261). Giacomo Bernardi, Ratul Mahajan, C. Seshadhri, Enrico Carlesso, Chinchu Merine Joseph, Saurabh Kumar, Pavan Manikonda, Luiza Popa, Randy Ram, Steven Robinson, Elizabeth Tennent. ArXiV, May 2026.
   * Describes the first production deployment of random graphs (also the first deployment of any expander based data center) at Amazon Web Services, where it is "now the default datacenter network for most workloads at Amazon"
