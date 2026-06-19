@@ -19,6 +19,10 @@ Here, we bring together research and resources on expander-based data centers, h
 
 ### Background
 
+As cloud computing scaled out, cloud workloads drove the need for high throughput between servers at huge scale in data centers. There is a long history of designing network topologies, particularly in the areas of switching networks for telecom and routers, and high performance computing, and data centers drew from that literature. In particular, the Clos network became ubiquitous, in various forms such as 3-layer [fat trees, SIGCOMM 2008](http://ccr.sigcomm.org/online/files/p63-alfares.pdf) and 2-layer variants known as leaf-spine networks. These networks can scale out, but at relatively high cost and with somewhat rigid design parameters to meet the network's structure. Furthermore, data centers have more flexible control planes and data planes than past generations of networks, which means that new design points are feasible.
+
+### What An Expander Is
+
 ### What Expanders Offer
 
 * Throughput
