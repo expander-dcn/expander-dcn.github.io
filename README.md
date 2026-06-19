@@ -10,9 +10,27 @@ Here, we bring together research and resources on expander-based data centers, h
 
 # Technical Overview
 
+### Background
+
+### What Expanders Offer
+
+* Throughput
+* Resilience
+* Flexible construction
+
+### System Proposals
+
+### Why It Works
+
+### Routing
+
+### Physical Cabling
+
+### Open Questions
+
 # Key Research Papers
 
-## Systems and System Evaluations
+### Systems and System Evaluations
 
 * [Jellyfish: Networking Data Centers Randomly](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla). Ankit Singla, Chi-Yao Hong, Lucian Popa, and P. Brighten Godfrey. 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2012. (An earlier version appeared in HotCloud 2011.)
   * Introduced the idea of using a degree-bounded random graph as the data center network topology, leading to better throughput and greater flexibility in construction compared to Clos networks (fat trees). In particular, the paper showed 25% higher throughput than Clos networks for the workloads it considered, and 60% lower incremental expansion cost for a particular model of incremental expansion, and better resilience to failed components.
@@ -34,7 +52,7 @@ Here, we bring together research and resources on expander-based data centers, h
 
 * [Xpander: Towards Optimal-Performance Datacenters](https://dl.acm.org/doi/10.1145/2999572.2999580). Asaf Valadarsky, Gal Shahaf, Michael Dinitz, and Michael Schapira. ACM CoNEXT 2016. ([Prior version](https://dl.acm.org/doi/10.1145/2834050.2834059) in HotNets 2015. [Project page](https://husant.github.io/Xpander/).)
   * Proposes Xpander, a deterministic expander graph construction for a data center network based on 2-lifts which can be incrementally expanded.
-  * Shows that several recently proposed data center topologies perform well because they are expanders -- in particular showing Jellyfish, Xpander, and several other expander graph constructions have nearly identical throughput, path length, and failure resilience. Also shows Slim Fly has reasonbly high expansion, though not quite as high as Jellyfish and Xpander.
+  * Shows that several recently proposed data center topologies perform well because they are expanders -- in particular showing Jellyfish, Xpander, and several other expander graph constructions have nearly identical throughput, path length, and failure resilience. Also shows Slim Fly has reasonably high expansion, though not quite as high as Jellyfish and Xpander.
   * Experiments with a hardware test (the first ever?) of an expander graph on a small testbed, showing better performance than fat trees.
 
 * [Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836). Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017. (Prior version: [Fat-FREE Topologies](https://dl.acm.org/doi/10.1145/3005745.3005747) in HotNets 2016.)
@@ -44,12 +62,12 @@ Here, we bring together research and resources on expander-based data centers, h
   * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and performs as well as Jellyfish and sometimes better at small scale. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
   * Introduces a practical routing scheme for flat networks including Jellyfish and DRing, easily implementable with standard switch features (BGP and VRFs) that performs well when used with ECMP and better with centrally-optimized weights.
 
-* [RNG: Flat Datacenter Networks at Scale](https://arxiv.org/abs/2604.15261). Giacomo Bernardi, Ratul Mahajan, C. Seshadhri, Enrico Carlesso, Chinchu Merine Joseph, Saurabh Kumar, Pavan Manikonda, Luiza Popa, Randy Ram, Steven Robinson, Elizabeth Tennent. ArXiV, May 2026.
+* [RNG: Flat Datacenter Networks at Scale](https://arxiv.org/abs/2604.15261). Giacomo Bernardi, Ratul Mahajan, C. Seshadhri, Enrico Carlesso, Chinchu Merine Joseph, Saurabh Kumar, Pavan Manikonda, Luiza Popa, Randy Ram, Steven Robinson, Elizabeth Tennent. arXiv, May 2026.
   * Describes the first production deployment of random graphs (also the first deployment of any expander based data center) at Amazon Web Services, where it is "now the default datacenter network for most workloads at Amazon"
   * Uses 45% fewer switches than fat trees (with a corresponding 45% cost reduction), while matching or exceeding fat tree performance
   * Addresses deployment challenges: (1) spraypoint routing to provide diverse paths with limited router memory, (2) passive optical devices called ShuffleBoxes, used as intermediate panels to ease wiring and incremental addition of racks, (3) analytical models to assist operator capacity planning
 
-## Theoretical Background
+### Theoretical Background
 
 * [Approximate Moore Graphs are good expanders](https://dl.acm.org/doi/10.1016/j.jctb.2019.08.003). Michael Dinitz, Michael Schapira, and Gal Shahaf. Journal of Combinatorial Theory Series B, Vol. 141, No. C, 2020. An earlier version appeared in ESA 2018.
   * Two major measures of topology optimality are (1) graph expansion and (2) approaching the Moore bound, which bounds the maximum number of nodes for a given degree and diameter. These have served as inspiration or explanation for data center and HPC network topology design.
