@@ -11,9 +11,9 @@ Here, we bring together research and resources on expander-based data centers, h
 | Table of Contents |
 | --------------- |
 | [Technical Overview](#technical-overview) |
-| [Key Research and Results](#papers) |
-| [Talks and Lecture Slides](#talks) |
-| [Simulators and Data Sets](#simulators) | 
+| [Key Research Papers and Results](#key-research-papers-and-results) |
+| [Talks and Lecture Slides](#talks-and-lecture-slides) |
+| [Simulators and Data Sets](#simulators-and-data-sets) | 
 
 # Technical Overview
 
@@ -35,7 +35,7 @@ Here, we bring together research and resources on expander-based data centers, h
 
 ### Open Questions
 
-# Key Research Papers and Results {#papers}
+# Key Research Papers and Results
 
 ### Systems and System Evaluations
 
@@ -80,11 +80,11 @@ Here, we bring together research and resources on expander-based data centers, h
   * Two major measures of topology optimality are (1) graph expansion and (2) approaching the Moore bound, which bounds the maximum number of nodes for a given degree and diameter. These have served as inspiration or explanation for data center and HPC network topology design.
   * Showed that the two major measures of optimality are actually fundamentally connected: it is easily seen that good expanders have low diameter; here it is shown that graphs with low diameter (for a given number of nodes and degree) are also forced to be good expanders.
 
-# Talks and Lecture Slides {#talks}
+# Talks and Lecture Slides
 
 * [Networking Data Centers Randomly](https://www.youtube.com/watch?v=yEjcZC34qNo). Brighten Godfrey. Talk at Texas A&M University, November 14, 2013.
 
-# Simulators and Data Sets {#simulators}
+# Simulators and Data Sets
 
 * [Topobench](https://github.com/ankitsingla/topobench-1): topology comparison tool used in Jellyfish (NSDI'12) and later extended in several papers (NSDI'14, SC'16, HotNets'16). Uses a multicommodity flow analysis -- that is, modeling network flow as a fluid rather than a packet-level simulation.
 * [NetBench](https://github.com/ndal-eth/netbench): packet level simulator from Beyond Fat-Trees (SIGCOMM'17).
