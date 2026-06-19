@@ -8,7 +8,14 @@ Traditionally, data center networks use tree-like topologies, particularly Clos 
 
 Here, we bring together research and resources on expander-based data centers, highlighting key contributions and relationships between them. The goal is to provide a relatively complete picture of known techniques and results to assist future research, teaching, and industry adoption. This site is curated by [Brighten Godfrey](https://pbg.cs.illinois.edu/). Comments and contributions are welcome via email or opening an [issue](https://github.com/expander-dcn/expander-dcn.github.io/issues) in the repo.
 
-# Technical Overview
+| Table of Contents |
+| --------------- |
+| [Technical Overview](#overview) |
+| [Key Research and Results](#papers) |
+| [Talks and Lecture Slides](#talks) |
+| [Simulators and Data Sets](#simulators) | 
+
+# Technical Overview {#overview}
 
 ### Background
 
@@ -28,7 +35,7 @@ Here, we bring together research and resources on expander-based data centers, h
 
 ### Open Questions
 
-# Key Research Papers
+# Key Research Papers and Results {#papers}
 
 ### Systems and System Evaluations
 
@@ -73,11 +80,11 @@ Here, we bring together research and resources on expander-based data centers, h
   * Two major measures of topology optimality are (1) graph expansion and (2) approaching the Moore bound, which bounds the maximum number of nodes for a given degree and diameter. These have served as inspiration or explanation for data center and HPC network topology design.
   * Showed that the two major measures of optimality are actually fundamentally connected: it is easily seen that good expanders have low diameter; here it is shown that graphs with low diameter (for a given number of nodes and degree) are also forced to be good expanders.
 
-# Talks and Lecture Slides
+# Talks and Lecture Slides {#talks}
 
 * [Networking Data Centers Randomly](https://www.youtube.com/watch?v=yEjcZC34qNo). Brighten Godfrey. Talk at Texas A&M University, November 14, 2013.
 
-# Simulators and Data Sets
+# Simulators and Data Sets {#simulators}
 
 * [Topobench](https://github.com/ankitsingla/topobench-1): topology comparison tool used in Jellyfish (NSDI'12) and later extended in several papers (NSDI'14, SC'16, HotNets'16). Uses a multicommodity flow analysis -- that is, modeling network flow as a fluid rather than a packet-level simulation.
 * [NetBench](https://github.com/ndal-eth/netbench): packet level simulator from Beyond Fat-Trees (SIGCOMM'17).
