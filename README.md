@@ -10,12 +10,12 @@ Here, we bring together research and resources on expander-based data centers, h
 
 | Table of Contents |
 | --------------- |
-| [Technical Overview](#overview) |
+| [Technical Overview](#technical-overview) |
 | [Key Research and Results](#papers) |
 | [Talks and Lecture Slides](#talks) |
 | [Simulators and Data Sets](#simulators) | 
 
-# Technical Overview {#overview}
+# Technical Overview
 
 ### Background
 
