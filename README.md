@@ -68,6 +68,8 @@ As cloud computing scaled out, cloud workloads drove the need for high throughpu
 
 * [Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836). Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017. (Prior version: [Fat-FREE Topologies](https://dl.acm.org/doi/10.1145/3005745.3005747) in HotNets 2016.)
 
+* [Expanding across time to deliver bandwidth efficiency and low latency](https://cseweb.ucsd.edu/~snoeren/papers/opera-nsdi20.pdf). William M. Mellette, Rajdeep Das, Yibo Guo, Rob McGuinness, Alex C. Snoeren, and George Porter. USENIX NSDI 2020.
+
 * [Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish). Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945) in HotNets 2020.)
   * Shows that leaf-spine is suboptimal for throughput, with flat networks including Jellyfish and the new DRing topology achieving >50% higher throughput.  Past work had focused on improving larger 3-tier Clos networks (fat trees), rather than leaf-spine which is used commonly in smaller data centers.
   * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and performs as well as Jellyfish and sometimes better at small scale. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
