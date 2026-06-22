@@ -23,7 +23,7 @@ As cloud computing scaled out, cloud workloads drove the need for high throughpu
 
 ### What An Expander Is
 
-An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is essentially a graph that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $G$ with $n$ nodes $V$, and all the nodes have degree $d$ (meaning they all have $d$ outgoing edges). For any subset of nodes $S\subseteq V$, let $\delta(S)$ denote the set of edges which cross from inside to outside of $S$. Then the edge expansion of $G$ is defined as
+An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is essentially a graph that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $$G$$ with $$n$$ nodes $$V$$, and all the nodes have degree $d$ (meaning they all have $d$ outgoing edges). For any subset of nodes $$S\subseteq V$$, let $\delta(S)$ denote the set of edges which cross from inside to outside of $S$. Then the edge expansion of $G$ is defined as
 
 $$
 h(G) = \min_{S \subseteq V, |S|\leq \frac{n}{2}} \frac{|\delta(S)|}{|S|}
