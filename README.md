@@ -44,7 +44,18 @@ For a data center network fabric, expander graphs offer several benefits over ot
 
 ### Why It Works
 
-The fact that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance may be counterintuitive.
+It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance. What's going on?
+
+Resilience, path length, and throughput are actually closely related. Resilience might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same role structurally, so no particular link or node failure has outside impact. 
+
+Path lengths are short intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, in a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
+
+Throughput is a bit more subtle. To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics. There are two limiting factors:
+
+* **Sparsest cut:**
+* **Total capacity and mean path length:**
+
+When each matters
 
 ### System Proposals
 
@@ -69,7 +80,7 @@ The fact that starting with a carefully-structured Clos and then randomly rewiri
 
 * **[Slim Fly: A Cost Effective Low-Diameter Network Topology](https://spcl.inf.ethz.ch/Publications/.pdf/sf_sc_2014.pdf).** Maciej Besta and Torsten Hoefler. International Conference on High Performance Computing, Networking, Storage and Analysis, November 2014 (SC 2014).
 
-* **[Measuring and Understanding Throughput of Network Topologies](https://pbg.cs.illinois.edu/papers/jyothi16throughput.pdf).** Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), November 2016.
+* **[Measuring and Understanding Throughput of Network Topologies](https://pbg.cs.illinois.edu/papers/jyothi16throughput.pdf).** <a id="jyothi16throughput"></a> Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), November 2016.
   * Demonstrates that cut-metrics, like bisection bandwidth and sparsest cut, are the wrong metrics for throughput. In fact, they can be asymptotically wrong: there are networks A and B, where A has a higher cut and B has asymptotically higher throughput.
   * Instead, proposes to measure worst-case throughput with an efficient algorithm to generate a near-worst-case traffic matrix for any given topology.
   * Benchmarks a wide range of topologies using worst-case and common-case traffic, including: BCube, DCell, Dragonfly, Fat Tree, Flattened Butterfly, Hypercube, HyperX, Jellyfish, Long Hop, and Slim Fly. At small scale, DCell performs well. At moderate to large scale (>1000 servers) the expanders -- Jellyfish, Long Hop, and Slim Fly -- perform best, with Jellyfish and Long Hop handling worst-case traffic best. Fat trees perform particularly poorly with nonuniform traffic, around half the throughput of Jellyfish.
