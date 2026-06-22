@@ -23,6 +23,16 @@ As cloud computing scaled out, cloud workloads drove the need for high throughpu
 
 ### What An Expander Is
 
+An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is essentially a graph that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $G$ with $n$ nodes $V$, and all the nodes have degree $d$ (meaning they all have $d$ outgoing edges). For any subset of nodes $S\subseteq V$, let $\delta(S)$ denote the set of edges which cross from inside to outside of $S$. Then the edge expansion of $G$ is defined as
+
+$$
+h(G) = \min_{S \subseteq V, |S|\leq \frac{n}{2}} \frac{|\delta(S)|}{|S|}
+$$
+
+(The notation $|S|$ means the size of set $S$.) $G$ is considered an expander when its edge expansion is relatively large, meaning $h(G) > c\cdot d$ for some constant $c>0$. The largest possible edge expansion is $c=1/2$.
+
+The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $(u,v)$ for which $u \in S$, there's about a 50% chance ($\frac{|S|-1}{n-1}$) that the other end of the edge ($v$) lands outside of $S$. So in expectation, $\delta(S)\geq \frac{d}{2}$, and the actual value will tend to concentrate close to that mean. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
+
 ### What Expanders Offer
 
 * Throughput
