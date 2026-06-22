@@ -31,7 +31,7 @@ $$
 
 (The notation $$`|S|`$$ means the size of set $$S$$.) $$G$$ is considered an expander when its edge expansion is relatively large, meaning $$h(G) > c \cdot d$$ for some constant $$c>0$$. The largest possible edge expansion is $$c=\frac{1}{2}$$.
 
-The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's about a 50% chance ($$\frac{|S|-1}{n-1}$$) that the other end of the edge ($$v$$) lands outside of $S$. So in expectation, $$\delta(S)\geq \frac{d}{2}$$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
+The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's about a 50% chance ($$`\frac{|S|-1}{n-1}`$$) that the other end of the edge ($$v$$) lands outside of $S$. So in expectation, $$`\delta(S)\geq \frac{1}{2} d |S|`$$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
 
 ### What Expanders Offer
 
