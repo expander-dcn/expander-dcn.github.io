@@ -81,8 +81,6 @@ The fact that starting with a carefully-structured Clos and then randomly rewiri
 
 * **[Beyond fat-trees without antennae, mirrors, and disco-balls](https://dl.acm.org/doi/10.1145/3098822.3098836).** Simon Kassing, Asaf Valadarsky, Gal Shahaf, Michael Schapira, and Ankit Singla. ACM SIGCOMM 2017. (Prior version: [Fat-FREE Topologies](https://dl.acm.org/doi/10.1145/3005745.3005747) in HotNets 2016.)
 
-* **[Expanding across time to deliver bandwidth efficiency and low latency](https://cseweb.ucsd.edu/~snoeren/papers/opera-nsdi20.pdf).** William M. Mellette, Rajdeep Das, Yibo Guo, Rob McGuinness, Alex C. Snoeren, and George Porter. USENIX NSDI 2020.
-
 * **[Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish).** Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945) in HotNets 2020.)
   * Shows that leaf-spine is suboptimal for throughput, with flat networks including Jellyfish and the new DRing topology achieving >50% higher throughput.  Past work had focused on improving larger 3-tier Clos networks (fat trees), rather than leaf-spine which is used commonly in smaller data centers.
   * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and performs as well as Jellyfish and sometimes better at small scale. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
@@ -92,6 +90,12 @@ The fact that starting with a carefully-structured Clos and then randomly rewiri
   * Describes the first production deployment of random graphs (also the first deployment of any expander based data center) at Amazon Web Services, where it is "now the default datacenter network for most workloads at Amazon"
   * Uses 45% fewer switches than fat trees (with a corresponding 45% cost reduction), while matching or exceeding fat tree performance
   * Addresses deployment challenges: (1) spraypoint routing to provide diverse paths with limited router memory, (2) passive optical devices called ShuffleBoxes, used as intermediate panels to ease wiring and incremental addition of racks, (3) analytical models to assist operator capacity planning
+
+### Expanders in Reconfigurable Optical Networks
+
+* **[Expanding across time to deliver bandwidth efficiency and low latency](https://cseweb.ucsd.edu/~snoeren/papers/opera-nsdi20.pdf).** William M. Mellette, Rajdeep Das, Yibo Guo, Rob McGuinness, Alex C. Snoeren, and George Porter. USENIX NSDI 2020.
+
+* **[Cerberus: The Power of Choices in Datacenter Topology Design (A Throughput Perspective)](https://people.csail.mit.edu/ghobadi/papers/cerberus_sigmetrics_2022.pdf).** Chen Griner, Johannes Zerwas, Andreas Blenk, Manya Ghobadi, Stefan Schmid, and Chen Avin. ACM SIGMETRICS 2022.
 
 ### Theoretical Background
 
