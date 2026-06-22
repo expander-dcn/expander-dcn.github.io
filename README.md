@@ -19,53 +19,36 @@ Here, we bring together research and resources on expander-based data centers, h
 
 ### Background
 
-As cloud computing scaled out, cloud workloads drove the need for high throughput between servers at huge scale in data centers. There is a long history of designing network topologies, particularly in the areas of switching networks and high performance computing, and data centers drew from that literature. In particular, the Clos network became ubiquitous, in various forms such as 3-layer [fat trees](http://ccr.sigcomm.org/online/files/p63-alfares.pdf) and 2-layer variants known as leaf-spine networks. These networks can scale out, but at relatively high cost and with somewhat rigid design parameters to meet the network's structure. Furthermore, data centers have more flexible control planes and data planes than past generations of networks, which means that new design points are feasible.
+As cloud computing scaled out, cloud workloads drove the need for high throughput between servers at huge scale in data centers. There is a long history of designing network topologies, particularly in the areas of switching networks and high performance computing, and data centers drew from that literature. In particular, the Clos network became ubiquitous, in various forms such as 3-layer [fat trees](http://ccr.sigcomm.org/online/files/p63-alfares.pdf) and 2-layer leaf-spine networks. These networks can scale out, but at relatively high cost and with somewhat rigid design parameters to meet the network's structure. Furthermore, data centers have more flexible control planes and data planes than past generations of networks, which means that new design points are feasible.
 
 ### What An Expander Is
 
-An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is essentially a graph that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $$G$$ with $$n$$ nodes $$V$$, and all the nodes have degree $$d$$ (meaning they all have $$d$$ outgoing edges). For any subset of nodes $$S\subseteq V$$, let $$\delta(S)$$ denote the set of edges which cross from inside to outside of $$S$$. Then the edge expansion of $$G$$ is defined as
+An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is one that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $$G$$ with $$n$$ nodes $$V$$, and all the nodes have degree $$d$$ (meaning they all have $$d$$ outgoing edges). For any subset of nodes $$S\subseteq V$$, let $$\delta(S)$$ denote the set of edges which cross from inside to outside of $$S$$. Then the edge expansion of $$G$$ is defined as
 
 $$
 h(G) = \min_{S \subseteq V, |S|\leq \frac{n}{2}} \frac{|\delta(S)|}{|S|}
 $$
 
-Test 1:
-$$ `|S|` $$
+(The notation $$\lvert S \rvert$$ means the size of set $$S$$.) $$G$$ is considered an expander when its edge expansion is relatively large, meaning $$h(G) > c \cdot d$$ for some constant $$c>0$$. The largest possible edge expansion is $$c=\frac{1}{2}$$.
 
-Test 2:
-$$ |S| $$
-
-Test 3:
-$$`|S|`$$
-
-Test 4:
-$$|S|$$
-
-Test 5:
-$ |S| $
-
-Test 6:
-$|S|$
-
-(The notation $$ |S| $$ means the size of set $$S$$.) $$G$$ is considered an expander when its edge expansion is relatively large, meaning $$h(G) > c \cdot d$$ for some constant $$c>0$$. The largest possible edge expansion is $$c=\frac{1}{2}$$.
-
-The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's about a 50% chance ($$`\frac{|S|-1}{n-1}`$$) that the other end of the edge ($$v$$) lands outside of $S$. So in expectation, $$`\delta(S)\geq \frac{1}{2} d |S|`$$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
+The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's about a 50% chance ($$\frac{\lvert S \rvert-1}{n-1}$$) that the other end of the edge ($$v$$) lands outside of $$S$$. So in expectation, $$\delta(S)\geq \frac{1}{2} d \lvert S \rvert $$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
 
 ### What Expanders Offer
 
-* Throughput
-* Resilience
-* Flexible construction
+For a data center network fabric, expander graphs offer several benefits over other topologies:
 
-### System Proposals
+* **Throughput:** Expanders have higher throughput, meaning they can support higher total end-to-end data transfer rates with the same equipment, or the same throughput with less equipment (switches and links). The amount of advantage depends on the traffic matrix, scale, and level of oversubscription, but is often in the range of 25-100% higher throughput compared to a Clos network. This results in the possibly counterintuitive fact that starting with a carefully-structured Clos and then randomly rewiring it actually improves performance.
+* **Resilience:** In a Clos network, loss of individual links or switches can result in disproportionately high throughput drop. In an expander, throughput degrades more gracefully -- roughly equal to the fraction of links failed.
+* **Path length:** Expanders have low shortest path length -- within a few percent of the best possible. In a 3-layer fat tree, most server-to-server paths have length 6; in a high quality expander (like a uniform random graph) most paths will be of length 4 or 5, with a maximum of 6.
+* **Flexible construction:** Most structured topologies have specific design parameters involving $$d$$, $$n$$, and the number of servers. Randomized constructions of expanders offer particular flexibility, working with any number of servers or switches, any degree, and switches of heterogeneous degree. They can also be expanded after construction with edge-swapping.
 
 ### Why It Works
+
+### System Proposals
 
 ### Routing
 
 ### Physical Cabling
-
-### Open Questions
 
 # Key Research Papers and Results
 
