@@ -29,9 +29,9 @@ $$
 h(G) = \min_{S \subseteq V, |S|\leq \frac{n}{2}} \frac{|\delta(S)|}{|S|}
 $$
 
-(The notation $|S|$ means the size of set $S$.) $G$ is considered an expander when its edge expansion is relatively large, meaning $h(G) > c\cdot d$ for some constant $c>0$. The largest possible edge expansion is $c=1/2$.
+(The notation $|S|$ means the size of set $S$.) $G$ is considered an expander when its edge expansion is relatively large, meaning $h(G) > c\cdot d$ for some constant $c>0$. The largest possible edge expansion is $c=\frac{1}{2}$.
 
-The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $(u,v)$ for which $u \in S$, there's about a 50% chance ($\frac{|S|-1}{n-1}$) that the other end of the edge ($v$) lands outside of $S$. So in expectation, $\delta(S)\geq \frac{d}{2}$, and the actual value will tend to concentrate close to that mean. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
+The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $(u,v)$ for which $u \in S$, there's about a 50% chance ($\frac{|S|-1}{n-1}$) that the other end of the edge ($v$) lands outside of $S$. So in expectation, $\delta(S)\geq \frac{d}{2}$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
 
 ### What Expanders Offer
 
@@ -105,3 +105,8 @@ The easiest way to construct an expander is to simply pick edges uniform-randoml
 * [Topobench](https://github.com/ankitsingla/topobench-1): topology comparison tool used in Jellyfish (NSDI'12) and later extended in several papers (NSDI'14, SC'16, HotNets'16). Uses a multicommodity flow analysis -- that is, modeling network flow as a fluid rather than a packet-level simulation.
 * [NetBench](https://github.com/ndal-eth/netbench): packet level simulator from Beyond Fat-Trees (SIGCOMM'17).
 * [Starfish simulator](https://github.com/AnnZhouCcc/Starfish): packet level simulator from Starfish (NSDI'26), which also includes other topologies for comparison.
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
