@@ -19,7 +19,7 @@ Here, we bring together research and resources on expander-based data centers, h
 
 ### Background
 
-As cloud computing scaled out, cloud workloads drove the need for high throughput between servers at huge scale in data centers. There is a long history of designing network topologies, particularly in the areas of switching networks and high performance computing, and data centers drew from that literature. In particular, the Clos network became ubiquitous, in various forms such as 3-layer [fat trees](http://ccr.sigcomm.org/online/files/p63-alfares.pdf) and 2-layer leaf-spine networks. These networks can scale out, but at relatively high cost and with somewhat rigid design parameters to meet the network's structure. Furthermore, data centers have more flexible control planes and data planes than past generations of networks, which means that new design points are feasible.
+There is a long history of designing network topologies, particularly in the areas of switching networks and high performance computing. As cloud computing scaled out and their workloads drove the need for high throughput, data centers drew from that literature. In particular, the Clos network became ubiquitous, in various forms such as 3-layer [fat trees](http://ccr.sigcomm.org/online/files/p63-alfares.pdf) and 2-layer leaf-spine networks. These networks can scale out, but at relatively high cost and with somewhat rigid design parameters to meet the network's structure. There has thus been a continuous need to support higher scale more efficiently. Furthermore, new design points (beyond the topologies developed in past generations of technology) are feasible because data centers have more flexible control planes and data planes than past generations of networks.
 
 ### What An Expander Is
 
@@ -50,10 +50,10 @@ Resilience, path length, and throughput are actually closely related. Resilience
 
 Path lengths are short intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, in a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
 
-Throughput is a bit more subtle. To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics. There are two limiting factors:
+Throughput is more subtle. To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics. There are two limiting factors:
 
-* **Sparsest cut:**
-* **Total capacity and mean path length:**
+* **Sparsest cut:** The maximum throughput between two sets of servers is limited by the minimum cut between them. (A graph's edge expansion captures per-server throughput nicely, by normalizing the cut by the size of the set.)
+* **Total capacity:**
 
 When each matters
 
