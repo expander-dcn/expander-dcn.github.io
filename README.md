@@ -4,9 +4,9 @@
 
 This site is a compendium of resources on expander graphs, including random graphs, for data center networks.
 
-Traditionally, data center networks use tree-like topologies, particularly Clos networks, including fat trees and leaf-spine networks. But it turns out it's possible to do significantly better, with various types of expander graphs. These topologies provide higher throughput, construction flexibility, and better resilience. A series of recent work, beginning with the Jellyfish project at the University of Illinois Urbana-Champaign, has explored these topologies, their performance, and systems challenges including approaches to routing and physical cabling. In 2026, Amazon Web Services announced deployment of random graphs as the default architecture for new data center build-outs, resulting in 45% lower cost than Clos networks.
+Traditionally, data center networks use tree-like topologies, particularly Clos networks, including fat trees and leaf-spine networks. But it turns out it's possible to do significantly better, with various types of expander graphs. These topologies provide higher throughput, construction flexibility, and better resilience. A series of recent work, beginning with the Jellyfish project at the University of Illinois, has explored these topologies, their performance, and systems challenges including approaches to routing and physical cabling. In 2026, Amazon Web Services announced deployment of random graphs as the default architecture for new data center build-outs, resulting in 45% lower cost than Clos networks.
 
-Here, we bring together research and resources on expander-based data centers, highlighting key contributions and relationships between them. The goal is to provide a relatively complete picture of known techniques and results to assist future research, teaching, and industry adoption. This site is curated by [Brighten Godfrey](https://pbg.cs.illinois.edu/). Comments and contributions are welcome via email or opening an [issue](https://github.com/expander-dcn/expander-dcn.github.io/issues) in the repo.
+Here, we bring together research and resources on expander-based data centers, highlighting key contributions and relationships between them. The goal is to provide a picture of known techniques and results to assist future research, teaching, and industry adoption. This site is curated by [Brighten Godfrey](https://pbg.cs.illinois.edu/). Comments and contributions are welcome via email or opening an [issue](https://github.com/expander-dcn/expander-dcn.github.io/issues) in the repo.
 
 | Table of Contents |
 | --------------- |
@@ -23,7 +23,7 @@ There is a long history of designing network topologies, particularly in the are
 
 ### What An Expander Is
 
-An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) is one that has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $$G$$ with $$n$$ nodes $$V$$, and all the nodes have degree $$d$$ (meaning they all have $$d$$ outgoing edges). For any subset of nodes $$S\subseteq V$$, let $$\delta(S)$$ denote the set of edges which cross from inside to outside of $$S$$. Then the edge expansion of $$G$$ is defined as
+An [expander graph](https://en.wikipedia.org/wiki/Expander_graph) has high connectivity exiting any subset of nodes, compared to the size of the subset. More precisely, let's say we have a graph $$G$$ with $$n$$ nodes $$V$$, and all the nodes have degree $$d$$ (meaning they all have $$d$$ outgoing edges). For any subset of nodes $$S\subseteq V$$, let $$\delta(S)$$ denote the set of edges which cross from inside to outside of $$S$$. Then the edge expansion of $$G$$ is defined as
 
 $$
 h(G) = \min_{S \subseteq V, |S|\leq \frac{n}{2}} \frac{|\delta(S)|}{|S|}
@@ -31,11 +31,11 @@ $$
 
 (The notation $$\lvert S \rvert$$ means the size of set $$S$$.) $$G$$ is considered an expander when its edge expansion is relatively large, meaning $$h(G) > c \cdot d$$ for some constant $$c>0$$. The largest possible edge expansion is $$c=\frac{1}{2}$$.
 
-The easiest way to construct an expander is to simply pick edges uniform-randomly, with no self-loops. To see why this works, take $S$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's about a 50% chance ($$\frac{\lvert S \rvert-1}{n-1}$$) that the other end of the edge ($$v$$) lands outside of $$S$$. So in expectation, $$\delta(S)\geq \frac{1}{2} d \lvert S \rvert $$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
+The easiest way to construct an expander is to simply pick edges uniform-randomly. To see why this works, take $$S$$ to be half of the nodes. For any edge $$(u,v)$$ for which $$u \in S$$, there's a 50% chance ($$\frac{\lvert S \rvert}{n}$$) that the other end of the edge ($$v$$) lands outside of $$S$$. So in expectation, $$\delta(S)\geq \frac{1}{2} d \lvert S \rvert $$, and the actual value will tend to concentrate close to that mean, so that a random graph is close to the best possible expander. In a sense, the graph has _diverse_ connections, and this means there are no small cuts. Deterministic constructions of expanders also exist.
 
 ### What Expanders Offer
 
-For a data center network fabric, expander graphs offer several benefits over other topologies:
+For a data center network fabric, expander graphs offer several benefits:
 
 * **Throughput:** Expanders have higher throughput, meaning they can support higher total end-to-end data transfer rates with the same equipment, or the same throughput with less equipment (switches and links). The amount of advantage depends on the traffic matrix, scale, and level of oversubscription, but is often in the range of 25-100% higher throughput compared to a Clos network.
 * **Resilience:** In a Clos network, loss of individual links or switches can result in disproportionately high throughput drop. In an expander, throughput degrades more gracefully -- roughly equal to the fraction of links failed.
@@ -44,18 +44,40 @@ For a data center network fabric, expander graphs offer several benefits over ot
 
 ### Why It Works
 
-It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance. What's going on?
+It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance. What's going on?  Resilience, path length, and throughput are actually closely related.
 
-Resilience, path length, and throughput are actually closely related. Resilience might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same role structurally, so no particular link or node failure has outside impact. 
+Resilience might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same role structurally, so no particular link or node has outsize impact if it fails.
 
-Path lengths are short intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, in a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
+Path lengths are short intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
 
-Throughput is more subtle. To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics. There are two limiting factors:
+Throughput is more subtle. There are two limiting factors:
 
-* **Sparsest cut:** The maximum throughput between two sets of servers is limited by the minimum cut between them. (A graph's edge expansion captures per-server throughput nicely, by normalizing the cut by the size of the set.)
-* **Total capacity:**
+* **Sparsest cut:** The maximum throughput between two sets of servers is limited by the minimum cut between them. Edge expansion captures this – or more precisely, per-server throughput across the worst cut.
+* **Total capacity:** Regardless of which links carry traffic, total network throughput is limited by the total capacity, accounting for the need to carry data across multiple hops:
+$$
+t \leq \frac{\sum_{e\in E} c(e)}{\ell}
+$$
+Here, $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows, capturing what's sometimes called the "bandwidth tax".
 
-When each matters
+These two limits are distinct: [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. The total capacity limit can be the limiting factor, pushing achievable throughput below the cut-limit. That regime is more likely with widespread traffic, like all-to-all.
+
+Expanders are near-optimal on both fronts. They avoid sparse cuts with diverse connectivity. That also means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility". In fact, this flexibility can be so good that the network moves into the regime where it is limited not by any particular bottleneck, but instead by the total capacity limit. Here, one can think of capacity as a "fluid", and expanders are near-optimal because their low path length uses that fluid capacity as efficiently as possible.
+
+### Why It Works
+
+It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ throughput. What's going on?  
+
+To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. There are two limiting factors.
+
+First, **sparse cuts**: the maximum throughput between two sets of servers is limited by the minimum cut between them. Edge expansion captures this – or more precisely, per-server throughput across the worst cut. Expanders avoid bottlenecks with high edge expansion. This means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility".
+
+In fact, this flexibility can be so good that the network moves into a regime where it is limited not by any particular bottleneck, but instead by **total capacity**:
+$$
+t \leq \frac{\sum_{e\in E} c(e)}{\ell}
+$$
+Here, $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows, capturing what's sometimes called the "bandwidth tax". In this regime, the network is saturated, pushing achievable throughput below the cut-limit.  In saturation, one can think of capacity as a "fluid", able to be shifted to serve any of the traffic.
+
+In this regime, assuming we are trying to design the best topology with limited total capacity, what we can control is path length. And expanders have near-optimal short paths, intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
 
 ### System Proposals
 
