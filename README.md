@@ -46,40 +46,24 @@ For a data center network fabric, expander graphs offer several benefits:
 
 It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance. What's going on?  Resilience, path length, and throughput are actually closely related.
 
-Resilience might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same role structurally, so no particular link or node has outsize impact if it fails.
+**Resilience** might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same structural role, so no particular link or node has outsize impact if it fails.
 
-Path lengths are short intuitively because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
+**Path lengths** are short because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing the opportunity to use those links to shorten paths.
 
-Throughput is more subtle. There are two limiting factors:
+**Throughput** is more subtle. [Throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. Intuitively, there are two important limits:
 
-* **Sparsest cut:** The maximum throughput between two sets of servers is limited by the minimum cut between them. Edge expansion captures this – or more precisely, per-server throughput across the worst cut.
-* **Total capacity:** Regardless of which links carry traffic, total network throughput is limited by the total capacity, accounting for the need to carry data across multiple hops:
+* **Sparsest cut:** The maximum throughput between two sets of servers is limited by the minimum cut between them.
+* **Total capacity:** Regardless of which links carry traffic, total network throughput is limited by the total capacity:
 
 $$
-t \leq \frac{\sum_{e\in E} c(e)}{\ell}
+t \leq \frac{\sum_{e\in E} c(e)}{\ell},
 $$
 
-Here, $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows, capturing what's sometimes called the "bandwidth tax".
+where $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows.  $$\ell$$ is critical: a 4-hop 100 Gbps flow, for example, uses twice as much capacity as a 2-hop 100 Gbps flow.
 
-These two limits are distinct: [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. The total capacity limit can be the limiting factor, pushing achievable throughput below the cut-limit. That regime is more likely with widespread traffic, like all-to-all.
+Either of the above could be the limiting factor – and expanders are near-optimal in both regimes. In the cut-limited regime, expanders avoid cut bottlenecks with high edge expansion. This means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility".
 
-Expanders are near-optimal on both fronts. They avoid sparse cuts with diverse connectivity. That also means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility". In fact, this flexibility can be so good that the network moves into the regime where it is limited not by any particular bottleneck, but instead by the total capacity limit. Here, one can think of capacity as a "fluid", and expanders are near-optimal because their low path length uses that fluid capacity as efficiently as possible.
-
-### Why It Works
-
-It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ throughput. What's going on?  
-
-To begin with, [throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. There are two limiting factors. First:
-
-* **Sparse cuts**: the maximum throughput between two sets of servers is limited by the minimum cut between them.
-
-Expanders avoid sparse-cut bottlenecks with high edge expansion. This means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility". In fact, this flexibility can be so good that the network moves into a regime where it is limited not by any particular bottleneck, but instead by a second limit:
-
-* **Total capacity**: $$t \leq \frac{\sum_{e\in E} c(e)}{\ell}$$, where $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows.
-
-This limit can push achievable throughput below the cut-limit. In this regime, the network is saturated, and one can think of capacity as a "fluid", able to be shifted to serve any of the traffic.
-
-Assuming we are trying to design the best topology with a limited total capacity budget, what we can control is path length – what's sometimes called the "bandwidth tax". Here, expanders win because they have near-optimal short paths, intuitively because connections are diverse. This is a lot like the six degrees of separation phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing out on the opportunity to use those links to reduce path length.
+In fact, this flexibility can be so good that the network moves into a regime where it is limited not by any particular bottleneck, but instead by total capacity (this is especially likely with traffic patterns like all-to-all). In this regime, the network is saturated, and one can think of capacity as a "fluid", able to be shifted to serve any of the traffic. Here, expanders are near-optimal because their low path length uses that fluid capacity as efficiently as possible.
 
 ### System Proposals
 
