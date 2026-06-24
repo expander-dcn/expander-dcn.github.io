@@ -37,10 +37,10 @@ The easiest way to construct an expander is to simply pick edges uniform-randoml
 
 For a data center network fabric, expander graphs offer several benefits:
 
-* **Throughput:** Expanders have higher throughput, meaning they can support more servers or higher throughput per server with the same equipment (switches and links), or the same throughput with less equipment. The amount of advantage depends on the scale, level of oversubscription, traffic matrix, and routing, but is often in the range of 25-100% higher throughput than a Clos network.
+* **Throughput:** Expanders support higher throughput per server or more servers with the same equipment (switches and links), or the same throughput with less equipment. The amount of advantage depends on many factors but is often in the range of 25-100% higher throughput than a Clos network.
 * **Resilience:** In a Clos network, loss of individual links or switches can result in disproportionately high throughput drop. In an expander, throughput degrades more gracefully -- roughly equal to the fraction of links failed.
 * **Path length:** Expanders have low shortest path length -- within a few percent of the best possible. In a 3-layer fat tree, most server-to-server paths have length 6; in a high quality expander (like a uniform random graph) most paths will be of length 4 or 5, with a maximum of 6.
-* **Flexible construction:** Most structured topologies have specific design parameters involving $$d$$, $$n$$, and the number of servers. Randomized constructions of expanders offer particular flexibility, working with any number of servers or switches, any degree, and switches of heterogeneous degree. They can also be expanded after construction with edge-swapping.
+* **Flexible construction:** Most structured topologies have specific design parameters involving $$d$$, $$n$$, and the number of servers. Randomized constructions of expanders offer particular flexibility, working with any number of servers or switches, any degree, and switches of heterogeneous degree and line speed. They can also be expanded after construction with link swaps.
 
 ### Why It Works
 
@@ -104,9 +104,9 @@ In fact, this flexibility can be so good that the network moves into a regime wh
   * Proposes a routing scheme for expanders, called Hybrid: packets of a flow are sent over shortest paths with ECMP until they hit a certain threshold of bytes sent, after which they are forwarded with Valiant Load Balancing (VLB) which redirects traffic through a random intermediate point to ensure a good spread of traffic across paths.
 
 * **[Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish).** Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945) in HotNets 2020.)
-  * Shows that leaf-spine is suboptimal for throughput, with flat networks including Jellyfish and the new DRing topology achieving >50% higher throughput.  Past work had focused on improving larger 3-tier Clos networks (fat trees), rather than leaf-spine which is used commonly in smaller data centers.
-  * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and performs as well as Jellyfish and sometimes better at small scale. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
+  * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and at small scale, performs as well as Jellyfish and sometimes better. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
   * Introduces a practical routing scheme for flat networks including Jellyfish and DRing, easily implementable with standard switch features (BGP and VRFs) that performs well when used with ECMP and better with centrally-optimized weights.
+  * Shows that leaf-spine is suboptimal for throughput, with flat networks including Jellyfish and DRing achieving >50% higher throughput.  Past work had focused on improving larger 3-tier Clos networks (fat trees), rather than leaf-spine which is used commonly in smaller data centers.
 
 * **[RNG: Flat Datacenter Networks at Scale](https://arxiv.org/abs/2604.15261).** Giacomo Bernardi, Ratul Mahajan, C. Seshadhri, Enrico Carlesso, Chinchu Merine Joseph, Saurabh Kumar, Pavan Manikonda, Luiza Popa, Randy Ram, Steven Robinson, Elizabeth Tennent. arXiv, May 2026.
   * Describes the first production deployment of random graphs (also the first deployment of any expander based data center) at Amazon Web Services, where it is "now the default datacenter network for most workloads at Amazon"
