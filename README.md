@@ -59,17 +59,39 @@ $$
 t \leq \frac{\sum_{e\in E} c(e)}{\ell},
 $$
 
-where $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows.  $$\ell$$ is critical: a 4-hop 100 Gbps flow, for example, uses twice as much capacity as a 2-hop 100 Gbps flow.
+where $$t$$ is the throughput summed across all node-pairs, $$c(e)$$ is the capacity of edge $$e$$, and $$\ell$$ is the average path length of flows.  $$\ell$$ is important: a 4-hop 100 Gbps flow, for example, uses twice as much capacity as a 2-hop 100 Gbps flow.
 
-Either of the above could be the limiting factor – and expanders are near-optimal in both regimes. In the cut-limited regime, expanders avoid cut bottlenecks with high edge expansion. This means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility".
+Either of the above could be the limiting factor – and expanders are near-optimal in both regimes. In the cut-limited regime, expanders avoid cut bottlenecks by definition, since they have high edge expansion. This means they are good at routing flows to wherever capacity happens to be available, which has been called "throughput flexibility" or "capacity fungibility".
 
-In fact, this flexibility can be so good that the network moves into a regime where it is limited not by any particular bottleneck, but instead by total capacity (this is especially likely with traffic patterns like all-to-all). In this regime, the network is saturated, and one can think of capacity as a "fluid", able to be shifted to serve any of the traffic. Here, expanders are near-optimal because their low path length uses that fluid capacity as efficiently as possible.
+In fact, this flexibility can be so good that the network moves into a regime where it is limited not by any particular cut, but instead by total capacity (this is especially likely with traffic patterns like all-to-all). In this regime, the network is saturated, and one can think of capacity as a "fluid", able to be shifted to serve any of the traffic. Here, expanders are near-optimal because their low path length uses that fluid capacity as efficiently as possible.
 
 ### System Proposals
 
+Jellyfish, NSDI'14, RNG
+
+Xpander
+
+Slim Fly, ESA 2018
+
+Cross-cutting (performance & beyond): SIGCOMM'17, SC'16, Starfish NSDI'26
+
 ### Routing
 
+Key challenges: non-shortest paths; oblivious vs. dynamic
+
+k-shortest paths, k-disjoint paths, shortest-union-k, spraypoint (oblivious)
+
+hybrid, controller-based (dynamic)
+
 ### Physical Cabling
+
+Bundling across clusters
+
+Fewer cables
+
+Patch panels and ShuffleBoxes
+
+Deterministic
 
 # Key Research Papers and Results
 
