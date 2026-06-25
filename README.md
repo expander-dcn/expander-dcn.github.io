@@ -151,6 +151,9 @@ Deterministic
 
 # Talks and Lecture Slides
 
+Individual papers above have links to their talks. This list includes talks and lectures covering broader overviews.
+
+* Lecture slides: Coming sometime in August 2026. Contact Brighten Godfrey if you're interested in them.
 * [Networking Data Centers Randomly](https://www.youtube.com/watch?v=yEjcZC34qNo). Brighten Godfrey. Talk at Texas A&M University, November 14, 2013.
 
 # Simulators and Data Sets
