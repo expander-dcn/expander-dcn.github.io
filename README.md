@@ -4,7 +4,7 @@
 
 This site is a compendium of resources on expander graphs, including random graphs, for data center networks.
 
-Traditionally, data center networks use tree-like topologies, particularly Clos networks, including fat trees and leaf-spine networks. But it turns out it's possible to do significantly better: expander graphs provide higher throughput, construction flexibility, and better resilience. A series of recent work, beginning with the Jellyfish project at the University of Illinois, proposed these topologies, demonstrated their substantially improved performance, and explored systems challenges including approaches to routing and physical cabling. In 2026, Amazon Web Services announced deployment of random graphs as the default architecture for new data center build-outs, realizing the topology's efficiency with 45% lower cost than Clos networks.
+Traditionally, data center networks use tree-like topologies, particularly Clos networks, including fat trees and leaf-spine networks. But it turns out it's possible to do significantly better: expander graphs provide higher throughput, construction flexibility, and better resilience. A series of recent work, beginning with the Jellyfish project at the University of Illinois, proposed these topologies, demonstrated improved performance corresponding to 20-50% lower cost, and explored systems challenges including approaches to routing and physical cabling. In 2026, Amazon Web Services announced deployment of random graphs as the default architecture for new data center build-outs, realizing the topology's efficiency with 45% lower cost than Clos networks.
 
 Here, we bring together research and resources on expander-based data centers, highlighting key contributions and relationships between them. The goal is to provide a picture of known techniques and results to assist future research, teaching, and industry adoption. This site is curated by [Brighten Godfrey](https://pbg.cs.illinois.edu/). Comments and contributions are welcome via email or opening an [issue](https://github.com/expander-dcn/expander-dcn.github.io/issues) in the repo.
 
@@ -97,7 +97,7 @@ Deterministic
 
 ### Systems and System Evaluations
 
-* **[Jellyfish: Networking Data Centers Randomly](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla).** Ankit Singla, Chi-Yao Hong, Lucian Popa, and P. Brighten Godfrey. 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2012. (An earlier version appeared in HotCloud 2011.)
+* **[Jellyfish: Networking Data Centers Randomly](https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/singla).** Ankit Singla, Chi-Yao Hong, Lucian Popa, and P. Brighten Godfrey. 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI), April 2012. (Earlier version appeared in HotCloud 2011) ([Blog post](https://youinfinitesnake.blogspot.com/2012/04/jellyfish-networking-data-centers.html))
   * Introduced the idea of using a degree-bounded random graph as the data center network topology, leading to better throughput and greater flexibility in construction compared to Clos networks (fat trees). In particular, the paper showed 25% higher throughput than Clos networks for the workloads it considered, 60% lower incremental expansion cost for a particular model of incremental expansion, and better resilience to failed components.
   * Compared throughput with degree-diameter optimal (Moore bound) graphs, as a benchmark of an optimal topology, finding Jellyfish comes within 10% of their throughput. (See discussion of Moore graphs elsewhere on this page.)
   * Proposed approaches to deployment challenges: routing with k-shortest paths, and simplifying cabling via physical switch placement, patch panels providing the random matchings, and clustering with fewer cross-cluster links and bundling cables
@@ -109,6 +109,7 @@ Deterministic
   * Shows that randomizing the VL2 topology, which has heterogeneous line speeds and degrees, improves throughput by 43% (depending on exact topology and workload parameters, this could be more or less).
 
 * **[Slim Fly: A Cost Effective Low-Diameter Network Topology](https://spcl.inf.ethz.ch/Publications/.pdf/sf_sc_2014.pdf).** Maciej Besta and Torsten Hoefler. International Conference on High Performance Computing, Networking, Storage and Analysis, November 2014 (SC 2014).
+  * _Summary forthcoming_
 
 * **[Measuring and Understanding Throughput of Network Topologies](https://pbg.cs.illinois.edu/papers/jyothi16throughput.pdf).** <a id="jyothi16throughput"></a> Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, and Alexandra Kolla. ACM/IEEE International Conference for High Performance Computing, Networking, Storage and Analysis (SC), November 2016.
   * Demonstrates that cut-metrics, like bisection bandwidth and sparsest cut, are the wrong metrics for throughput. In fact, they can be asymptotically wrong: there are networks A and B, where A has a higher cut and B has asymptotically higher throughput.
@@ -126,8 +127,10 @@ Deterministic
   * Proposes a routing scheme for expanders, called Hybrid: packets of a flow are sent over shortest paths with ECMP until they hit a certain threshold of bytes sent, after which they are forwarded with Valiant Load Balancing (VLB) which redirects traffic through a random intermediate point to ensure a good spread of traffic across paths.
 
 * **[Expander Datacenters: From Theory to Practice](https://arxiv.org/abs/1811.00212).** Vipul Harsh, Sangeetha Abdu Jyothi, Inderdeep Singh, P. Brighten Godfrey. arXiv, November 2018.
+  * _Summary forthcoming_
 
 * **[A High-Performance Design, Implementation, Deployment, and Evaluation of The Slim Fly Network](https://www.usenix.org/conference/nsdi24/presentation/blach)**. Nils Blach, Maciej Besta, Daniele De Sensi, Jens Domke, Hussein Harake, Shigang Li, Patrick Iff, Marek Konieczny, Kartik Lakhotia, Ales Kubicek, Marcel Ferrari, Fabrizio Petrini, and Torsten Hoefler. USENIX NSDI 2024.
+  * _Summary forthcoming_
 
 * **[Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish).** Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945) in HotNets 2020.)
   * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and at small scale, performs as well as Jellyfish and sometimes better. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
@@ -142,8 +145,14 @@ Deterministic
 ### Expanders in Reconfigurable Optical Networks
 
 * **[Expanding across time to deliver bandwidth efficiency and low latency](https://cseweb.ucsd.edu/~snoeren/papers/opera-nsdi20.pdf).** William M. Mellette, Rajdeep Das, Yibo Guo, Rob McGuinness, Alex C. Snoeren, and George Porter. USENIX NSDI 2020.
+  * _Summary forthcoming_
+
+* **[Flexspander: augmenting expander networks in high-performance systems with optical bandwidth steering](https://ieeexplore.ieee.org/document/9019590).** Min Yee Teh, Zhenguo Wu, and Keren Bergman. Journal of Optical Communications and Networking, March 2020.
+  * _Summary forthcoming_
 
 * **[Cerberus: The Power of Choices in Datacenter Topology Design (A Throughput Perspective)](https://people.csail.mit.edu/ghobadi/papers/cerberus_sigmetrics_2022.pdf).** Chen Griner, Johannes Zerwas, Andreas Blenk, Manya Ghobadi, Stefan Schmid, and Chen Avin. ACM SIGMETRICS 2022.
+  * _Summary forthcoming_
+
 
 ### Theoretical Background
 
