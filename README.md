@@ -127,6 +127,8 @@ Deterministic
 
 * **[Expander Datacenters: From Theory to Practice](https://arxiv.org/abs/1811.00212).** Vipul Harsh, Sangeetha Abdu Jyothi, Inderdeep Singh, P. Brighten Godfrey. arXiv, November 2018.
 
+* **[A High-Performance Design, Implementation, Deployment, and Evaluation of The Slim Fly Network](https://www.usenix.org/conference/nsdi24/presentation/blach)**. Nils Blach, Maciej Besta, Daniele De Sensi, Jens Domke, Hussein Harake, Shigang Li, Patrick Iff, Marek Konieczny, Kartik Lakhotia, Ales Kubicek, Marcel Ferrari, Fabrizio Petrini, and Torsten Hoefler. USENIX NSDI 2024.
+
 * **[Starfish: A Topology-Routing Co-Design for Small-Scale Data Centers](https://www.usenix.org/conference/nsdi26/presentation/zhou-starfish).** Anchengcheng Zhou, Vipul Harsh, Sangeetha Abdu Jyothi, Maria Apostolaki, and P. Brighten Godfrey. 23rd USENIX Symposium on Networked Systems Design and Implementation (NSDI), May 2026. (Prior version: [Spineless Data Centers](https://dl.acm.org/doi/10.1145/3422604.3425945) in HotNets 2020.)
   * Introduces the DRing topology, which has a simple regular deterministic structure that may ease wiring, and at small scale, performs as well as Jellyfish and sometimes better. DRing does not perform well at high scale, illustrating that small-scale topology design offers new design points.
   * Introduces a practical routing scheme for flat networks including Jellyfish and DRing, easily implementable with standard switch features (BGP and VRFs) that performs well when used with ECMP and better with centrally-optimized weights.
