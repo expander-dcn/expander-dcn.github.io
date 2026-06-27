@@ -128,6 +128,9 @@ Deterministic
 
 * **[Expander Datacenters: From Theory to Practice](https://arxiv.org/abs/1811.00212).** Vipul Harsh, Sangeetha Abdu Jyothi, Inderdeep Singh, P. Brighten Godfrey. arXiv, November 2018.
   * _Summary forthcoming_
+  * Evaluates the effect of a broader set of traffic matrices (TMs), including a 2-dimensional sweep over TMs with varying number of client and server pairs which spans uniform and skewed patterns, and a TM from Facebook. Finds that the expander's performance advantage over Clos can be large, even 2-4x, especially with oversubscription in the Clos.
+  * Evaluates k-disjoint path routing, which can be implemented with segment routing and offers...
+  * Implements a random graph in a hardware testbed
 
 * **[A High-Performance Design, Implementation, Deployment, and Evaluation of The Slim Fly Network](https://www.usenix.org/conference/nsdi24/presentation/blach)**. Nils Blach, Maciej Besta, Daniele De Sensi, Jens Domke, Hussein Harake, Shigang Li, Patrick Iff, Marek Konieczny, Kartik Lakhotia, Ales Kubicek, Marcel Ferrari, Fabrizio Petrini, and Torsten Hoefler. USENIX NSDI 2024.
   * _Summary forthcoming_
@@ -173,6 +176,9 @@ Individual papers above have links to their talks. This list includes talks and 
 * [NetBench](https://github.com/ndal-eth/netbench): packet level simulator from Beyond Fat-Trees (SIGCOMM'17).
 * [Starfish simulator](https://github.com/AnnZhouCcc/Starfish): packet level simulator from Starfish (NSDI'26), which also includes other topologies for comparison.
 
+# Acknowledgements
+
+The Jellyfish project was funded by the National Science Foundation and a gift from Cisco Systems. Thanks to Sangeetha Abdu Jyothi, Vipul Harsh,  and Ankit Singla for useful comments on this site.
 
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
