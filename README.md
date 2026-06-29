@@ -48,13 +48,10 @@ It may be counterintuitive that starting with a carefully-structured Clos and th
 
 **Resilience** might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same structural role, so no particular link or node has outsize impact if it fails.
 
-**Path lengths** are short because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing the opportunity to use those links to shorten paths.
+**Path lengths** are short because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing the opportunity to use those links to shorten paths. To illustrate this missed opportunity, observe that you can actually remove most of the network links in a Clos network without affecting any server-to-server path lengths:
 
-<figure style="float: right; width: 33%; margin: 0 0 15px 15px;">
-  <img src="images/Clos-link-removal.gif" alt="A description of the GIF for accessibility" style="width: 100%; height: auto;">
-  <figcaption style="text-align: center; margin-top: 8px;">
-    <em>In a Clos network, you can remove most of the network links without affecting any server-to-server path lengths. Those links were not helping to shortne paths – a missed opportunity.</em>
-  </figcaption>
+<figure style="width: 33%; margin: 0 0 15px 15px;">
+  <img src="images/Clos-link-removal.gif" alt="In a Clos network, you can remove most of the network links without affecting any server-to-server path lengths. Those links were not helping to shorten paths – a missed opportunity." style="width: 100%; height: auto;">
 </figure>
 
 **Throughput** is more subtle. [Throughput is not the same as bisection bandwidth](#jyothi16throughput) or other cut metrics alone. Intuitively, there are two important limits:
