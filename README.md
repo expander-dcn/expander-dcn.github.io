@@ -71,7 +71,9 @@ In fact, this flexibility can be so good that the network moves into a regime wh
 
 ### System Proposals
 
-Jellyfish, NSDI'14, RNG
+The [Papers section](#key-research-papers-and-results) of this page describes the key contributions of each proposed system, in addition to other papers. Here we give a brief overview.
+
+Jellyfish (NSDI 2012) proposed using a (degree-bounded) random graph as a data center network, showing improved construction flexibility, throughput, resilience and path length. It also proposed solutions to several key deployment considerations like routing and cabling. NSDI'14 explored this design further, including optimality, how to configure the topology with heterogeneous components, and a case study of randomizing Microsoft's VL2 topology. Amazon's RNG (arXiv 2026) deployment uses a random graph, mentioning construction flexibility (easily incorporating switches of different degrees) as a key advantage.
 
 Xpander
 
