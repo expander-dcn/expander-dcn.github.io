@@ -154,7 +154,19 @@ Deterministic
   * Two major measures of topology optimality are (1) graph expansion and (2) approaching the Moore bound, which bounds the maximum number of nodes for a given degree and diameter. These have served as inspiration or explanation for data center and HPC network topology design.
   * Showed that the two major measures of optimality are actually fundamentally connected: it is easily seen that good expanders have low diameter; here it is shown that graphs with low diameter (for a given number of nodes and degree) are also forced to be good expanders.
 
-* **[A High-Performance Design, Implementation, Deployment, and Evaluation of The Slim Fly Network](https://www.usenix.org/conference/nsdi24/presentation/blach)**. Nils Blach, Maciej Besta, Daniele De Sensi, Jens Domke, Hussein Harake, Shigang Li, Patrick Iff, Marek Konieczny, Kartik Lakhotia, Ales Kubicek, Marcel Ferrari, Fabrizio Petrini, and Torsten Hoefler. USENIX NSDI 2024.
+* **[Bundlefly: a low-diameter topology for multicore fiber](https://dl.acm.org/doi/10.1145/3392717.3392747).** Fei Lei, Dezun Dong, Xiangke Liao, and José Duato. ACM International Conference on Supercomputing (ICS) 2020.
+  * _Summary forthcoming_
+
+* **[SpectralFly: Ramanujan Graphs as Flexible and Efficient Interconnection Networks](https://ieeexplore.ieee.org/document/9820688).** Stephen Young, Sinan Aksoy, Jesun Firoz, Roberto Gioiosa, Tobias Hagge, and Mark Kempton. IEEE International Parallel and Distributed Processing Symposium (IPDPS), May 2022.
+  * _Summary forthcoming_
+
+* **[PolarFly: a cost-effective and flexible low-diameter topology](https://dl.acm.org/doi/abs/10.5555/3571885.3571900).** Kartik Lakhotia, Maciej Besta, Laura Monroe, Kelly Isham, Patrick Iff, Torsten Hoefler, and Fabrizio Petrini. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC), November 2022.
+  * _Summary forthcoming_
+
+* **[A High-Performance Design, Implementation, Deployment, and Evaluation of The Slim Fly Network](https://www.usenix.org/conference/nsdi24/presentation/blach).** Nils Blach, Maciej Besta, Daniele De Sensi, Jens Domke, Hussein Harake, Shigang Li, Patrick Iff, Marek Konieczny, Kartik Lakhotia, Ales Kubicek, Marcel Ferrari, Fabrizio Petrini, and Torsten Hoefler. USENIX NSDI 2024.
+  * _Summary forthcoming_
+
+* **[PolarStar: Expanding the Horizon of Diameter-3 Networks](https://dl.acm.org/doi/10.1145/3626183.3659975).** Kartik Lakhotia, Laura Monroe, Kelly Isham, Maciej Besta, Nils Blach, Torsten Hoefler, and Fabrizio Petrini. SPAA 2024.
   * _Summary forthcoming_
 
 ### Expanders in Reconfigurable Optical Networks
@@ -183,7 +195,7 @@ Individual papers above have links to their talks. This list includes talks and 
 
 # Acknowledgements
 
-The Jellyfish project was funded by the National Science Foundation and a gift from Cisco Systems. Thanks to Sangeetha Abdu Jyothi, Vipul Harsh,  and Ankit Singla for useful comments on this site.
+The Jellyfish project was funded by the National Science Foundation and a gift from Cisco Systems. Thanks to Sangeetha Abdu Jyothi, Vipul Harsh, Ankit Singla, and Ann Zhou for useful comments on this site.
 
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
