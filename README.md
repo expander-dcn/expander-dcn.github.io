@@ -37,16 +37,17 @@ The easiest way to construct an expander is to simply pick edges uniform-randoml
 
 For a data center network fabric, expander graphs offer several benefits:
 
-* **Throughput:** Expanders support higher throughput per server or more servers with the same equipment (switches and links), or the same throughput with less equipment. The amount of advantage depends on many factors but is often in the range of 25-100% higher throughput than a Clos network.
+* **Throughput:** With the same equipment (switches and links) as a Clos network, expanders can provide higher per-server throughput or support more servers. The exact gain depends on many factors, but is often in the range of 25-100% higher throughput than a Clos network constructed with the same equipment. Alternately, they can achieve the same throughput with less equipment.
+* Expanders support higher throughput per server or more servers with the same equipment (switches and links), or the same throughput with less equipment. The amount of advantage depends on many factors but is often in the range of 25-100% higher throughput than a Clos network.
 * **Resilience:** In a Clos network, loss of individual links or switches can result in disproportionately high throughput drop. In an expander, throughput degrades more gracefully -- roughly equal to the fraction of links failed.
-* **Path length:** Expanders have low shortest path length -- within a few percent of the best possible. In a 3-layer fat tree, most server-to-server paths have length 6; in a high quality expander (like a uniform random graph) most paths will be of length 4 or 5, with a maximum of 6.
-* **Flexible construction:** Most structured topologies have specific design parameters involving $$d$$, $$n$$, and the number of servers. Randomized constructions of expanders offer particular flexibility, working with any number of servers or switches, any degree, and switches of heterogeneous degree and line speed. They can also be expanded after construction with link swaps.
+* **Path length:** Expanders have low shortest path length -- within a few percent of the best possible. This can translate to around 1-2 hops shorter average path length than a 3-layer fat tree (although it will depend on degree and scale).
+* **Flexible construction:** Most structured topologies have specific design parameters involving $$d$$, $$n$$, and the number of servers. Randomized constructions of expanders offer particular flexibility, working with any number of servers or switches, any degree, and switches of heterogeneous degree and line speed. They can also be incrementally expanded after initial deployment with link swaps.
 
 ### Why It Works
 
-It may be counterintuitive that starting with a carefully-structured Clos and then randomly rewiring it actually _improves_ performance. What's going on?  Resilience, path length, and throughput are actually closely related.
+It may be counterintuitive that starting with the same equipment as a carefully-structured Clos, wiring it randomly actually _improves_ performance. What's going on?  Resilience, path length, and throughput are actually closely related.
 
-**Resilience** might be the easiest to see. Because any set of nodes has many outgoing connections, losing one of those links has less impact. Furthermore, in random graphs and most other expander constructions, every node has the same structural role, so no particular link or node has outsize impact if it fails.
+**Resilience** might be the easiest to see. Because any set of nodes has many outgoing connections, no particular link or node has outsize impact if it fails.
 
 **Path lengths** are short because connections are diverse. This is a lot like the "six degrees of separation" phenomenon: any two people on Earth are connected by a short chain of friends, because typically we have many diverse (even random!) acquaintances. In contrast, a Clos network has many links that provide redundancy but connect similar groups of switches, missing the opportunity to use those links to shorten paths. To illustrate this missed opportunity, observe that you can actually remove most of the network links in a Clos network without affecting any server-to-server path lengths:
 
@@ -75,7 +76,7 @@ The [Papers section](#key-research-papers-and-results) of this page describes th
 
 Jellyfish (NSDI 2012) proposed using a (degree-bounded) random graph as a data center network, showing improved construction flexibility, throughput, resilience and path length. It also proposed solutions to several key deployment considerations like routing and cabling. NSDI'14 explored this design further, including optimality, how to configure the topology with heterogeneous components, and a case study of randomizing Microsoft's VL2 topology. Amazon's RNG (arXiv 2026) deployment uses a random graph, mentioning construction flexibility (easily incorporating switches of different degrees) as a key advantage.
 
-Xpander
+Xpander 
 
 Slim Fly, ESA 2018
 
